@@ -3,7 +3,6 @@
 //
 
 #include <iostream>
-#include <vector>
 #include <algorithm>
 #include <iterator>
 
@@ -11,15 +10,16 @@ using namespace std;
 
 /**
  * 选择排序
- * @param vec 待排序向量
+ * @param arr
+ * @param length
  */
-void SelectSort(vector<int> &vec) {
-    for (size_t i = 0; i < vec.size(); ++i) {
-        for (size_t j = i + 1; j < vec.size(); ++j) {
-            if (vec.at(i) > vec.at(j)) {
-                int temp = vec.at(i);
-                vec[i] = vec.at(j);
-                vec[j] = temp;
+void SelectSort(int arr[], int length) {
+    for (int i = 0; i < length; ++i) {
+        for (int j = i + 1; j < length; ++j) {
+            if (arr[i] > arr[j]) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
             }
         }
     }
@@ -27,8 +27,9 @@ void SelectSort(vector<int> &vec) {
 
 
 int main() {
-    vector<int> vec = {4, 3, 9, 6, 7, 7};
-    SelectSort(vec);
-    copy(vec.begin(), vec.end(), ostream_iterator<int>(cout, " "));
+    int arr[] = {4, 3, 9, 6, 7, 7};
+    int length = sizeof(arr) / sizeof(arr[0]);
+    SelectSort(arr, length);
+    copy(cbegin(arr), cend(arr), ostream_iterator<int>(cout, " "));
     return 0;
 }
